@@ -17,8 +17,7 @@ mv circle-mplus-1m-20200415/* ./
 
 ./ricty_shindim_generator.sh auto
 
-# Not working yet
-# ./os2width_reviser_shindim.sh
+./os2width_reviser_shindim.sh
 
 mkdir -p thirdparty-dependency-backup
 mv fonts_ttf.zip thirdparty-dependency-backup/
