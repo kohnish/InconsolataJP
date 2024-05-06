@@ -35,7 +35,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: dependencies
-      run: apk update && apk upgrade && apk add fontforge 7zip bash curl tar gzip
+      run: apk update && apk upgrade && apk add fontforge 7zip bash curl tar gzip zip
 
     - name: build
       run: cd ./scripts && ./build.sh
@@ -49,6 +49,17 @@ jobs:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
         asset_path: scripts/InconsolataJP.zip
         asset_name: InconsolataJP.zip
+        asset_content_type: application/zip
+
+    - name: thirdpart-dependency-backup-upload
+      id: upload-sha256-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: build/thirdparty-dependency-backup.zip
+        asset_name: thirdparty-dependency-backup.zip
         asset_content_type: application/zip
 
     # - name: upload-backup
